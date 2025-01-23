@@ -11,8 +11,22 @@ require('dotenv').config();  // Cargar las variables de entorno desde el archivo
 const app = express();
 
 app.use(express.json());
-app.use(cors());  // Habilitar CORS para permitir solicitudes desde el frontend
+const allowedOrigins = [
+  'https://ped-app-rab1-a0oe2ve3o-jeffrey-cedenos-projects.vercel.app',
+  'http://localhost:3000', // Para desarrollo local
+];
 
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 // Conectar a MongoDB
 mongoose.connect('mongodb+srv://jeffreycedeno:XWBHXxxZZoPp4LUf@pediatricapp.v7iwh.mongodb.net/?retryWrites=true&w=majority&appName=pediatricApp', {
   useNewUrlParser: true,
