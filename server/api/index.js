@@ -99,7 +99,7 @@ app.post('/register', async (req, res) => {
 
 
 // Ruta de login (generar el token)
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
