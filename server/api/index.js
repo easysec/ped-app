@@ -11,9 +11,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://ped-app-ebon.vercel.app'], // URL del frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    credentials: true, // Permitir cookies y encabezados de autenticación
+    origin: '*', // Permite todas las solicitudes (solo para pruebas)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
   })
 );
 
