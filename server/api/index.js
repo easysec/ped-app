@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://ped-app-rab1.vercel.app', // URL del frontend
+    origin: ['http://localhost:3000', 'https://tu-frontend-en-vercel.vercel.app'], // URL del frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     credentials: true, // Permitir cookies y encabezados de autenticación
   })
