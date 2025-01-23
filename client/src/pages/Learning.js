@@ -5,33 +5,24 @@ function Learning() {
   const articles = [
     {
       id: 1,
-      title: 'La importancia de conocer las dosis pediátricas',
-      description: 'Aprenda por qué es crucial administrar las dosis correctas en medicamentos pediátricos.',
-      content: 'La administración de dosis incorrectas en pediatría puede ocasionar efectos adversos graves debido a la sensibilidad de los niños a ciertos medicamentos. Este artículo analiza las pautas y recomendaciones para evitar errores comunes.',
+      title: 'La importancia de las dosis correctas en medicamentos pediátricos',
+      description:
+        'Descubre por qué es crucial administrar las dosis adecuadas a los niños y cómo evitar errores comunes.',
+      contentPage: '/articles/article1.html', // Ruta del archivo HTML del artículo 1
     },
     {
       id: 2,
-      title: 'Prevención de interacciones medicamentosas en niños',
-      description: 'Conozca cómo identificar y prevenir interacciones medicamentosas comunes en pediatría.',
-      content: 'Las interacciones medicamentosas en pediatría son un problema crítico que puede afectar la efectividad del tratamiento. Este artículo revisa casos frecuentes y cómo los médicos pueden evitarlos.',
+      title: 'Seguridad en la administración de medicamentos a los niños',
+      description:
+        'Aprenda consejos clave para administrar medicamentos a los niños de manera segura y eficaz.',
+      contentPage: '/articles/article2.html', // Ruta del archivo HTML del artículo 2
     },
     {
       id: 3,
-      title: 'Cuidados durante enfermedades respiratorias en niños',
-      description: 'Consejos y mejores prácticas para cuidar a niños durante enfermedades respiratorias.',
-      content: 'Las infecciones respiratorias en niños son comunes y requieren atención adecuada. Este artículo proporciona estrategias para el manejo en casa y cuándo es necesario buscar atención médica.',
-    },
-    {
-      id: 4,
-      title: 'MHealth en pediatría: Herramientas digitales para padres',
-      description: 'Explora cómo las herramientas de salud móvil están transformando el cuidado infantil.',
-      content: 'Las aplicaciones móviles de salud (mHealth) están revolucionando la manera en que los padres gestionan el cuidado de sus hijos. Aprende cómo estas herramientas pueden ayudarte a mantener un registro de medicamentos y citas médicas.',
-    },
-    {
-      id: 5,
-      title: 'Riesgos comunes en la dosificación de medicamentos',
-      description: 'Identifique los riesgos frecuentes al administrar medicamentos a los niños.',
-      content: 'Los errores de dosificación en pediatría son una de las principales causas de hospitalización. Este artículo detalla cómo prevenir errores y garantizar la seguridad del paciente.',
+      title: 'Cuidados en el hogar para enfermedades respiratorias en niños',
+      description:
+        'Guía para prevenir complicaciones y cuidar a los niños con infecciones respiratorias agudas en casa.',
+      contentPage: '/articles/article3.html', // Ruta del archivo HTML del artículo 3
     },
   ];
 
@@ -70,13 +61,29 @@ function Learning() {
         ))}
       </Row>
 
-      {/* Modal para mostrar detalles */}
-      <Modal show={!!selectedArticle} onHide={handleCloseModal} centered>
+      {/* Modal para mostrar detalles del artículo */}
+      <Modal
+        show={!!selectedArticle}
+        onHide={handleCloseModal}
+        centered
+        size="xl" // Tamaño del modal (extra-large)
+        dialogClassName="responsive-modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>{selectedArticle?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{selectedArticle?.content}</p>
+          {selectedArticle && (
+            <iframe
+              src={selectedArticle.contentPage}
+              style={{
+                width: '100%',
+                height: '70vh', // Ajustar la altura al 70% del viewport
+                border: 'none',
+              }}
+              title={selectedArticle.title}
+            ></iframe>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>

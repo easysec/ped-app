@@ -11,12 +11,12 @@ import {
   BoxArrowInRight,
   Book,
   Bell,
+  PersonFill,
 } from 'react-bootstrap-icons';
 import appLogo from '../assets/images/logo.png'; // Importing the logo
 
 function Header({ token = null, role = null, handleLogout = () => {} }) {
   const userName = 'Usuario';
-  const userPhoto = 'https://via.placeholder.com/30';
 
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="shadow-lg border-bottom">
@@ -52,8 +52,8 @@ function Header({ token = null, role = null, handleLogout = () => {} }) {
                 <NavDropdown
                   title={
                     <span className="d-flex align-items-center">
-                      <Image src={userPhoto} roundedCircle width="30" height="30" className="me-2" />
-                      {userName}
+                      <PersonFill size={30} className="me-2 text-white" />
+                      <span className="me-1">{userName}</span> {/* Espaciado uniforme */}
                     </span>
                   }
                   id="profile-dropdown"

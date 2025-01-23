@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Container, Row, Col, Image, Button, Modal } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import {
+  PersonFill, 
+} from 'react-bootstrap-icons';
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null); // Datos del perfil del usuario
@@ -93,13 +96,7 @@ const deleteBaby = async (babyId) => {
             <Card.Body>
               <Row className="align-items-center">
                 <Col md={3} className="text-center">
-                  <Image
-                    src="https://via.placeholder.com/100"
-                    roundedCircle
-                    width="100"
-                    height="100"
-                    alt="Usuario"
-                  />
+                <PersonFill size={100} className="me-2" style={{ color: '#00BFFF' }} />
                 </Col>
                 <Col md={9}>
                   <Card.Title className="text-primary">
@@ -128,13 +125,7 @@ const deleteBaby = async (babyId) => {
                     <Card.Body>
                       <Row className="align-items-center">
                         <Col md={4} className="text-center">
-                          <Image
-                            src="https://via.placeholder.com/80"
-                            roundedCircle
-                            width="80"
-                            height="80"
-                            alt="Infante"
-                          />
+                        <PersonFill size={80} className="me-2" style={{ color: '#00BFFF' }} />
                         </Col>
                         <Col md={8}>
                           <Card.Title className="text-secondary">{baby.name}</Card.Title>
