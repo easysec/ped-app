@@ -13,11 +13,12 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://ped-app-rab1.vercel.app', // URL del frontend desplegado
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-    credentials: true, // Permitir cookies y autenticación
+    origin: 'https://ped-app-rab1.vercel.app', // URL del frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    credentials: true, // Permitir cookies y encabezados de autenticación
   })
 );
+
 // Conectar a MongoDB
 mongoose.connect('mongodb+srv://jeffreycedeno:XWBHXxxZZoPp4LUf@pediatricapp.v7iwh.mongodb.net/?retryWrites=true&w=majority&appName=pediatricApp', {
   useNewUrlParser: true,
@@ -89,7 +90,7 @@ app.post('/register', async (req, res) => {
 
 
 // Ruta de login (generar el token)
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -285,7 +286,7 @@ app.put('/medicamentos/:id', async (req, res) => {
 });
 
 
-// Escuchar el puerto 5000
-app.listen(5000, () => {
-  console.log('Servidor corriendo en el puerto 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
