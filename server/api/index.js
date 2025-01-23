@@ -9,13 +9,27 @@ const auth = require('../auth');  // Importar el middleware de autenticación
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 const app = express();
 
+const allowedOrigins = [
+  'https://ped-app-rab1.vercel.app', // Dominio del frontend en producción
+  'http://localhost:3000', // Dominio en desarrollo (opcional)
+];
+
 app.use(
   cors({
-    origin: '*', // Permite todas las solicitudes (solo para pruebas)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
+    origin: (origin, callback) => {
+      // Permitir solicitudes sin origen (como en Postman) o verificar el origen
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('No permitido por CORS')); // Bloquea orígenes no autorizados
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+    credentials: true, // Permitir cookies y cabeceras de autenticación
   })
 );
+
+app.options('*', cors()); // Habilita preflight requests para todas las rutas
 
 app.use(express.json());
 
