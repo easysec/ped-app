@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 const allowedOrigins = [
   'https://ped-app-rab1-a0oe2ve3o-jeffrey-cedenos-projects.vercel.app',
+  'https://ped-app-rab1.vercel.app',
   'http://localhost:3000', // Para desarrollo local
 ];
 
