@@ -11,21 +11,11 @@ require('dotenv').config();  // Cargar las variables de entorno desde el archivo
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = [
-  'https://ped-app-rab1-a0oe2ve3o-jeffrey-cedenos-projects.vercel.app',
-  'https://ped-app-rab1.vercel.app',
-  'http://localhost:3000', // Para desarrollo local
-];
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: 'https://ped-app-rab1.vercel.app', // URL del frontend desplegado
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+    credentials: true, // Permitir cookies y autenticación
   })
 );
 // Conectar a MongoDB
