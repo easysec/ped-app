@@ -7,10 +7,8 @@ const Medicamento = require('../models/medicamento');
 const cors = require('cors');
 const auth = require('../auth');  // Importar el middleware de autenticación
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
-
 const app = express();
 
-app.use(express.json());
 app.use(
   cors({
     origin: ['http://localhost:3000', 'https://ped-app-ebon.vercel.app'], // URL del frontend
@@ -18,6 +16,8 @@ app.use(
     credentials: true, // Permitir cookies y encabezados de autenticación
   })
 );
+
+app.use(express.json());
 
 // Conectar a MongoDB
 mongoose.connect('mongodb+srv://jeffreycedeno:XWBHXxxZZoPp4LUf@pediatricapp.v7iwh.mongodb.net/?retryWrites=true&w=majority&appName=pediatricApp', {
