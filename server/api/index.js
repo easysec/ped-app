@@ -240,16 +240,20 @@ app.put('/edit-reminder/:babyId/:reminderId', auth, async (req, res) => {
 });
 
 // Ruta para obtener todos los medicamentos
+// Ruta para obtener todos los medicamentos (con búsqueda)
 app.get('/medicamentos', async (req, res) => {
   try {
-    const medicamentos = await Medicamento.find();
-    console.log('Medicamentos obtenidos:', medicamentos); // Log de depuración
+    const searchQuery = req.query.search || ''; // Recupera el parámetro de búsqueda
+    const medicamentos = await Medicamento.find({
+      nombre: { $regex: searchQuery, $options: 'i' }, // Filtra por nombre (insensible a mayúsculas/minúsculas)
+    });
     res.json(medicamentos);
   } catch (error) {
     console.error('Error al obtener medicamentos:', error);
     res.status(500).json({ message: 'Error al obtener medicamentos' });
   }
 });
+
 
 // Ruta para agregar un nuevo medicamento
 app.post('/medicamentos', async (req, res) => {
